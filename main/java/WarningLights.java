@@ -1,36 +1,43 @@
+import java.util.BitSet;
+
 public class WarningLights {
 
-    private boolean engineLightOn;
-    private boolean oilLightOn;
-    private boolean tirePressureLightOn;
+    private BitSet warningBits;
 
     public WarningLights() {
-        engineLightOn = false;
-        oilLightOn = false;
-        tirePressureLightOn = false;
+        warningBits = new BitSet(3); // 3 bits for the three warning lights
     }
 
     public void setEngineLightOn(boolean on) {
-        engineLightOn = on;
+        warningBits.set(0, on);
     }
 
     public void setOilLightOn(boolean on) {
-        oilLightOn = on;
+        warningBits.set(1, on);
     }
 
     public void setTirePressureLightOn(boolean on) {
-        tirePressureLightOn = on;
+        warningBits.set(2, on);
     }
 
     public boolean isEngineLightOn() {
+        if (engineLightOn) {
+            System.out.println("Engine warning: Check engine!");
+        }
         return engineLightOn;
     }
-
+    
     public boolean isOilLightOn() {
+        if (oilLightOn) {
+            System.out.println("Oil warning: Check oil levels!");
+        }
         return oilLightOn;
     }
-
+    
     public boolean isTirePressureLightOn() {
+        if (tirePressureLightOn) {
+            System.out.println("Tire pressure warning: Check tire pressure!");
+        }
         return tirePressureLightOn;
     }
 }
