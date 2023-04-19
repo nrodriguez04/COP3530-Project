@@ -1,10 +1,16 @@
+/* 
+COP 3530 PROJECT
+ENTERTAINMENT SYSTEM CAR FEATURE
+CONTRIBUTOR AJ CARDOZA
+*/
+
 import java.util.*;
 
-public class CarEntertainmentSystem {
+public class Entertainment extends Navigation {
 
     public static void main(String[] args) {
         System.out.println("Ford Entertainment System Activated");
-        
+
         Queue<String> entertainmentQueue = new LinkedList<>();
         entertainmentQueue.offer("CarPlay");
         entertainmentQueue.offer("Radio");
@@ -13,12 +19,12 @@ public class CarEntertainmentSystem {
 
         Scanner scanner = new Scanner(System.in);
 
-        while(!entertainmentQueue.isEmpty()) {
+        while (!entertainmentQueue.isEmpty()) {
             String option = entertainmentQueue.poll();
             System.out.println("Select entertainment option");
             String response = scanner.nextLine();
 
-            switch(response.toLowerCase()) {
+            switch (response.toLowerCase()) {
                 case "carplay":
                     activateCarPlay();
                     break;
@@ -44,17 +50,17 @@ public class CarEntertainmentSystem {
 
         Scanner scanner = new Scanner(System.in);
         boolean isRunning = true;
-        
-        while(isRunning) {
+
+        while (isRunning) {
             System.out.println("Select Option: ");
             System.out.println("1. Phone");
             System.out.println("2. Music");
             System.out.println("3. Maps");
             System.out.println("4. Return to dashboard");
-            
+
             int option = scanner.nextInt();
-            
-            switch(option) {
+
+            switch (option) {
                 case 1:
                     System.out.println("Opening Phone...");
                     activatePhone();
@@ -65,7 +71,7 @@ public class CarEntertainmentSystem {
                     break;
                 case 3:
                     System.out.println("Opening Maps...");
-                    activateMaps();
+                    Navigation.activateMaps();
                     break;
                 case 4:
                     System.out.println("Returning to dashboard...");
@@ -84,26 +90,25 @@ public class CarEntertainmentSystem {
         boolean isRunning = true;
         String radioType = "AM";
         int radioFrequency = 530;
-        int[] presetFrequencies = new int[] {530, 600, 680, 760, 840, 920};
+        int[] presetFrequencies = new int[] { 630, 790, 920, 1110, 1180, 1240, 1290, 1590 };
         int currentPresetIndex = 0;
 
-        while(isRunning) {
+        while (isRunning) {
             System.out.println("Select Option: ");
             System.out.println("1. Change radio type (AM/FM)");
             System.out.println("2. Tune frequency");
             System.out.println("3. Select preset");
             System.out.println("4. Scan for stations");
-            System.out.println("5. Return to entertainment menu");
+            System.out.println("5. Return to dashboard");
 
             Scanner scanner = new Scanner(System.in);
             int option = scanner.nextInt();
 
-            switch(option) {
+            switch (option) {
                 case 1:
                     if (radioType.equals("AM")) {
                         radioType = "FM";
-                    } 
-                    else {
+                    } else {
                         radioType = "AM";
                     }
                     System.out.println("Radio type changed to " + radioType);
@@ -111,15 +116,13 @@ public class CarEntertainmentSystem {
                 case 2:
                     System.out.println("Enter frequency (in kHz):");
                     int newFrequency = scanner.nextInt();
-                    if (radioType.equals("AM") && newFrequency >= 530 && newFrequency <= 1700) {
+                    if (radioType.equals("AM") && newFrequency >= 630 && newFrequency <= 1590) {
                         radioFrequency = newFrequency;
                         System.out.println("Tuned to " + radioFrequency + " kHz");
-                    } 
-                    else if (radioType.equals("FM") && newFrequency >= 88 && newFrequency <= 108) {
+                    } else if (radioType.equals("FM") && newFrequency >= 88 && newFrequency <= 108) {
                         radioFrequency = newFrequency;
                         System.out.println("Tuned to " + radioFrequency + " MHz");
-                    } 
-                    else {
+                    } else {
                         System.out.println("Invalid frequency for " + radioType + " radio.");
                     }
                     break;
@@ -130,8 +133,7 @@ public class CarEntertainmentSystem {
                         radioFrequency = presetFrequencies[presetIndex];
                         currentPresetIndex = presetIndex;
                         System.out.println("Tuned to preset " + (presetIndex + 1) + " (" + radioFrequency + " kHz)");
-                    } 
-                    else {
+                    } else {
                         System.out.println("Invalid preset selection.");
                     }
                     break;
@@ -140,10 +142,9 @@ public class CarEntertainmentSystem {
                     int scanStart;
                     int scanEnd;
                     if (radioType.equals("AM")) {
-                        scanStart = 530;
-                        scanEnd = 1700;
-                    } 
-                    else {
+                        scanStart = 630;
+                        scanEnd = 1590;
+                    } else {
                         scanStart = 88;
                         scanEnd = 108;
                     }
@@ -155,7 +156,7 @@ public class CarEntertainmentSystem {
                     System.out.println("Scan complete.");
                     break;
                 case 5:
-                    System.out.println("Returning to entertainment menu...");
+                    System.out.println("Returning to dashboard...");
                     isRunning = false;
                     break;
                 default:
@@ -163,13 +164,13 @@ public class CarEntertainmentSystem {
                     break;
             }
         }
-    }   
-    
+    }
+
     private static void activateMusic() {
         System.out.println("Activating Music...");
         boolean isRunning = true;
 
-        while(isRunning) {
+        while (isRunning) {
             System.out.println("Select Option: ");
             System.out.println("1. Playlist");
             System.out.println("2. Library");
@@ -180,28 +181,28 @@ public class CarEntertainmentSystem {
             Scanner scanner = new Scanner(System.in);
             int option = scanner.nextInt();
 
-        switch(option) {
-            case 1:
-                System.out.println("Retrieving Playlists...");
-                break;
-            case 2:
-                System.out.println("Retrieving Library...");
-                break;
-            case 3:
-                System.out.println("Browsing Music...");
-                break;
-            case 4:
-                System.out.println("Listening Now...");
-                break;
-            case 5:
-                System.out.println("Returning to dashboard...");
-                isRunning = false;
-                break;
-            default:
-                break;
+            switch (option) {
+                case 1:
+                    System.out.println("Retrieving Playlists...");
+                    break;
+                case 2:
+                    System.out.println("Retrieving Library...");
+                    break;
+                case 3:
+                    System.out.println("Browsing Music...");
+                    break;
+                case 4:
+                    System.out.println("Listening Now...");
+                    break;
+                case 5:
+                    System.out.println("Returning to dashboard...");
+                    isRunning = false;
+                    break;
+                default:
+                    break;
+            }
         }
     }
-}
 
     private static void activateMaps() {
         System.out.println("Activating Maps...");
@@ -214,20 +215,25 @@ public class CarEntertainmentSystem {
             System.out.println("2. Find nearby places");
             System.out.println("3. Favorites");
             System.out.println("4. Return to dashboard");
-    
+
             int choice = scanner.nextInt();
-    
+
             switch (choice) {
                 case 1:
                     System.out.println("Enter destination:");
                     String destination = scanner.next();
                     System.out.println("Calculating route to " + destination + "...");
+                    Navigation navigation = new Navigation();
+                    List<String> directions = navigation.getDirections();
+                    for (String direction : directions) {
+                        System.out.println(direction);
+                    }
                     break;
                 case 2:
-                    System.out.println("Finding nearby places...");
+                    System.out.println("Please update software to activate feature...");
                     break;
                 case 3:
-                    System.out.println("Viewing favorites...");
+                    System.out.println("Please update software to activate feature...");
                     break;
                 case 4:
                     System.out.println("Returning to dashboard...");
@@ -243,7 +249,7 @@ public class CarEntertainmentSystem {
         System.out.println("Activating Bluetooth...");
         boolean isRunning = true;
 
-        while(isRunning) {
+        while (isRunning) {
             System.out.println("Select Option: ");
             System.out.println("1. Music");
             System.out.println("2. Phone");
@@ -252,7 +258,7 @@ public class CarEntertainmentSystem {
             Scanner scanner = new Scanner(System.in);
             int option = scanner.nextInt();
 
-            switch(option) {
+            switch (option) {
                 case 1:
                     System.out.println("Music Selected");
                     activateMusic();
@@ -279,7 +285,7 @@ public class CarEntertainmentSystem {
 
         System.out.println("Activating phone");
 
-        while(isRunning) {
+        while (isRunning) {
             System.out.println("Select Option: ");
             System.out.println("1. Favorites");
             System.out.println("2. Recent");
@@ -290,15 +296,18 @@ public class CarEntertainmentSystem {
             Scanner scanner = new Scanner(System.in);
             int option = scanner.nextInt();
 
-            switch(option) {
+            switch (option) {
                 case 1:
                     System.out.println("Retrieving Favorites...");
+                    System.out.println("No contacts in Favorits");
                     break;
                 case 2:
                     System.out.println("Retrieving Recent Calls...");
+                    System.out.println("No recent calls in history");
                     break;
                 case 3:
                     System.out.println("Retrieving Contacts");
+                    System.out.println("No contacts found.");
                     break;
                 case 4:
                     System.out.println("Keypad Selected");
@@ -315,13 +324,13 @@ public class CarEntertainmentSystem {
                 default:
                     break;
             }
-            
+
             if (isDialing) {
                 System.out.println("Dialing " + phoneNumber);
                 System.out.println("Connected...");
                 isConnected = true;
 
-                while(isConnected) {
+                while (isConnected) {
                     System.out.println("Select Option: ");
                     System.out.println("1. Hold");
                     System.out.println("2. Mute");
@@ -336,8 +345,7 @@ public class CarEntertainmentSystem {
                             String resumeOption = scanner.next();
                             if (resumeOption.equalsIgnoreCase("Y")) {
                                 System.out.println("Resuming Call");
-                            }
-                            else {
+                            } else {
                                 System.out.println("Call disconnected");
                                 isConnected = false;
                             }
@@ -348,8 +356,7 @@ public class CarEntertainmentSystem {
                             String unmuteOption = scanner.next();
                             if (unmuteOption.equalsIgnoreCase("Y")) {
                                 System.out.println("Call has been unmuted");
-                            }
-                            else {
+                            } else {
                                 System.out.println("Call disconnected");
                                 isConnected = false;
                             }
@@ -361,8 +368,8 @@ public class CarEntertainmentSystem {
                             break;
                         default:
                             break;
-                        }
-                        
+                    }
+
                 }
             }
         }

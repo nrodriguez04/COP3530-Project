@@ -1,3 +1,9 @@
+/* 
+COP 3530 PROJECT
+ODOMETER FEATURE
+CONTRIBUTOR NICOLAS RODRIGUEZ
+*/
+
 import java.io.*;
 import java.util.Scanner;
 

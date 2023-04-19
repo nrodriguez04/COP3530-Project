@@ -4,14 +4,14 @@ import java.util.Stack;
 import javax.lang.model.util.ElementScanner14;
 import javax.swing.event.SwingPropertyChangeSupport;
 
-public class FuelGauge {
+public class FuelGauge extends Odometer {
 
-  private int miles = 0; // miles driven
-  private int maxMiles = 250; // maximum amount of miles per full tank of gas of avg automobile
-  private int gallons; // gallons of fuel
-  private int MPG; // average miles per gallon
-  private int fullTank = 12; // full tank of fuel for an average automobile
-  private int totalMPG = 0;
+    private int miles = 0; // miles driven
+    private int maxMiles = 250; // maximum amount of miles per full tank of gas of avg automobile
+    private int gallons; // gallons of fuel
+    private int MPG; // average miles per gallon
+    private int fullTank = 12; // full tank of fuel for an average automobile
+    private int totalMPG = 0;
 
     Stack<Integer> trip = new Stack<Integer>();
 
@@ -55,7 +55,7 @@ public class FuelGauge {
             MPG = getMPG(miles, gallons);
             trip.push(MPG);
         }
-        while (!trip.isEmpty()) {
+        while (!trip.isEmpty()) { // Stack to obtain total miles per gallon
             totalMPG += trip.pop();
         }
         return totalMPG;

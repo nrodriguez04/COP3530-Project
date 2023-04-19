@@ -1,12 +1,17 @@
+/* 
+COP 3530 PROJECT
+AUTOMATIC HEADLIGHTS CAR FEATURE
+CONTRIBUTOR AJ CARDOZA
+*/
+
 import java.time.LocalDateTime;
 import java.util.Random;
 
-public class CarWeatherSensor {
+public class Headlights {
 
     private static class Weather {
         private String condition;
         private int temperature;
-        private boolean isNight;
 
         public Weather(String condition, int temperature) {
             this.condition = condition;
@@ -40,35 +45,35 @@ public class CarWeatherSensor {
             this.right = null;
         }
 
-    public void insertLeft(TreeNode node) {
-        this.left = node;
-    }
+        public void insertLeft(TreeNode node) {
+            this.left = node;
+        }
 
-    public void insertRight(TreeNode node) {
-        this.right = node;
-    }
+        public void insertRight(TreeNode node) {
+            this.right = node;
+        }
 
-    public boolean evaluate(Weather weather) {
-        switch (condition) {
-            case "Raining":
-                return weather.getCondition().equals("Raining");
-            case "Snowing":
-                return weather.getCondition().equals("Snowing");
-            case "Night":
-                return weather.isNight();
-            case "Poor visibility":
-                return weather.getCondition().equals("Rainy") || weather.getCondition().equals("Snowy");
-            case "Headlights on":
-                return true;
-            default:
-                throw new IllegalArgumentException("Invalid condition: " + condition);
+        public boolean evaluate(Weather weather) {
+            switch (condition) {
+                case "Raining":
+                    return weather.getCondition().equals("Raining");
+                case "Snowing":
+                    return weather.getCondition().equals("Snowing");
+                case "Night":
+                    return weather.isNight();
+                case "Poor visibility":
+                    return weather.getCondition().equals("Rainy") || weather.getCondition().equals("Snowy");
+                case "Headlights on":
+                    return true;
+                default:
+                    throw new IllegalArgumentException("Invalid condition: " + condition);
+            }
         }
     }
-}
 
     private static Weather generateRandomWeather() {
         Random rand = new Random();
-        String[] conditions = {"Sunny", "Cloudy", "Rainy", "Snowy"};
+        String[] conditions = { "Sunny", "Cloudy", "Rainy", "Snowy" };
         String condition = conditions[rand.nextInt(conditions.length)];
         int temperatureCelsius = rand.nextInt(121) - 10;
         int temperatureFahrenheit = temperatureCelsius * 9 / 5 + 32;
@@ -96,30 +101,30 @@ public class CarWeatherSensor {
 
     public static void main(String[] args) {
         System.out.println("Ford Weather System Sucsessfully Activated");
-            
+
         Weather weather = generateRandomWeather();
-            System.out.print("Current weather: " + weather.getCondition());
-            System.out.println(", Temperature: " + weather.getTemperature());
+        System.out.print("Current weather: " + weather.getCondition());
+        System.out.println(", Temperature: " + weather.getTemperature());
 
-            TreeNode rainyNode = new TreeNode("Raining");
-            TreeNode snowyNode = new TreeNode("Snowing");
-            TreeNode nightNode = new TreeNode("Night");
-            TreeNode poorVisibilityNode = new TreeNode("Poor visibility");
-            TreeNode headlightsOnNode = new TreeNode("Headlights on");
+        TreeNode rainyNode = new TreeNode("Raining");
+        TreeNode snowyNode = new TreeNode("Snowing");
+        TreeNode nightNode = new TreeNode("Night");
+        TreeNode poorVisibilityNode = new TreeNode("Poor visibility");
+        TreeNode headlightsOnNode = new TreeNode("Headlights on");
 
-            rainyNode.insertLeft(headlightsOnNode);
-            snowyNode.insertLeft(headlightsOnNode);
-            nightNode.insertLeft(headlightsOnNode);
+        rainyNode.insertLeft(headlightsOnNode);
+        snowyNode.insertLeft(headlightsOnNode);
+        nightNode.insertLeft(headlightsOnNode);
 
-            poorVisibilityNode.insertLeft(headlightsOnNode);
-            poorVisibilityNode.insertRight(rainyNode);
+        poorVisibilityNode.insertLeft(headlightsOnNode);
+        poorVisibilityNode.insertRight(rainyNode);
 
-            TreeNode root = poorVisibilityNode;
+        TreeNode root = poorVisibilityNode;
 
-            boolean shouldTurnOnHeadLights = evaluateTree(root, weather);
+        boolean shouldTurnOnHeadLights = evaluateTree(root, weather);
 
-            if (shouldTurnOnHeadLights) {
-                System.out.println("Inclement weather detected, headlights sucssessfully activated");
-            }
+        if (shouldTurnOnHeadLights) {
+            System.out.println("Inclement weather detected, headlights sucssessfully activated");
+        }
     }
 }

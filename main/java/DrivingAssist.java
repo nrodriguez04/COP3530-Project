@@ -1,9 +1,15 @@
+/* 
+COP 3530 PROJECT
+DRIVING ASSIST CAR FEATURE
+CONTRIBUTOR AJ CARDOZA
+*/
+
 import java.util.Comparator;
 import java.util.PriorityQueue;
 import java.util.Random;
 import java.lang.reflect.Array;
 
-public class CarDrivingAssist {
+public class DrivingAssist {
 
     private static class Car implements Comparable<Car> {
         private String name;
@@ -98,14 +104,14 @@ public class CarDrivingAssist {
         MyPriorityQueue<Car> carQueue = new MyPriorityQueue<Car>();
         Random rand = new Random();
         for (int i = 0; i < 5; i++) {
-            int speed = rand.nextInt(101); // Generate a random speed between 0 and 100
-            int distance = rand.nextInt(101) - 50; // Generate a random distance between -50 and 50
+            int speed = rand.nextInt(101); 
+            int distance = rand.nextInt(101) - 50; 
             carQueue.add(new Car("Car " + (i+1), speed, distance));
         }
 
         boolean blinkerEngaged = false;
         Random randBlinker = new Random();
-        int blinkerChance = randBlinker.nextInt(101); // Generate a random number between 0 and 100
+        int blinkerChance = randBlinker.nextInt(101); 
         if (blinkerChance < 25) {
             blinkerEngaged = true;
         }
