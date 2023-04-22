@@ -7,7 +7,7 @@ CONTRIBUTOR NICOLAS RODRIGUEZ
 import java.io.*;
 import java.util.Scanner;
 
-public class Odometer {
+public class Odometer implements OdometerInterface {
     private int currentDistance;
     private int prevDistance;
     private File dataFile;
@@ -34,7 +34,12 @@ public class Odometer {
         currentDistance += distance;
         writeDataToFile(currentDistance);
     }
+
+    public void incrementDistance() {
+        incrementDistance(1);
+    }
     
+    @Override
     public int getCurrentDistance() {
         return currentDistance;
     }

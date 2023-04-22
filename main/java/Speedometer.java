@@ -1,3 +1,9 @@
+/* 
+COP 3530 PROJECT
+SPEEDOMETER FEATURE
+CONTRIBUTOR LORENZO FERNANDEZ
+*/
+
 
 public class Speedometer {
 

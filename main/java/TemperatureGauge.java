@@ -1,3 +1,9 @@
+/* 
+COP 3530 PROJECT
+TEMPERATURE GAUGE FEATURE
+CONTRIBUTOR LORENZO FERNANDEZ
+*/
+
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -8,7 +14,7 @@ public class TemperatureGauge {
     private int minTemp = 0;
     private int tempRange = maxTemp - minTemp;
 
-    public  int getTemp(int temp) {
+    public int getTemp(int temp) {
         temp = (int) (Math.random() * tempRange + minTemp);
         return temp;
     }

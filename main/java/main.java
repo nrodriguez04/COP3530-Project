@@ -7,7 +7,7 @@ AJ CARDOZA: ENTERTAINMENT SYSTEM, DRIVING ASSIST, AUTOMATIC HEADLIGHTS
 LORENZO FERNANDEZ: SPEEDOMETER, FUEL GAUGE, TEMPERATURE GAUGE
 */
 
-public class main {
+public class Main {
     public static void main(String[] args) {
 
         // Access Entertainment System
@@ -35,7 +35,7 @@ public class main {
         WarningLights warningLights = new WarningLights();
 
         // Access Odometer
-        odometer.currentDistance(200);
+        odometer.getCurrentDistance();
         // Access Navigation
         navigation.setDestination("FIU");
         // Access Warning Lights

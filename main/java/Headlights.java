@@ -12,12 +12,12 @@ public class Headlights {
     private static class Weather {
         private String condition;
         private int temperature;
-        private boolean isNight;
+        //private boolean isNight;
 
         public Weather(String condition, int temperature) {
             this.condition = condition;
             this.temperature = temperature;
-            this.isNight = isNight();
+            //this.isNight = isNight();
         }
 
         public String getCondition() {
@@ -80,8 +80,8 @@ public class Headlights {
         int temperatureFahrenheit = temperatureCelsius * 9 / 5 + 32;
         temperatureFahrenheit = Math.min(temperatureFahrenheit, 98);
         Weather weather = new Weather(condition, temperatureFahrenheit);
-        boolean isNight = weather.isNight();
-        weather.isNight = isNight;
+        //boolean isNight = weather.isNight();
+        //weather.isNight = isNight;
         return weather;
     }
 

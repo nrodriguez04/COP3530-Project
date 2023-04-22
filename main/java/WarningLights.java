@@ -4,9 +4,10 @@ WARNING LIGHT FEATURE
 CONTRIBUTOR NICOLAS RODRIGUEZ
 */
 
+
 import java.util.BitSet;
 
-public class WarningLights extends TemperatureGauge {
+public class WarningLights implements FuelGaugeInterface, TemperatureGaugeInterface {
 
     private BitSet warningBits;
 
@@ -44,20 +45,53 @@ public class WarningLights extends TemperatureGauge {
         return warningBits.get(1);
     }
 
-    public boolean isTirePressureLightOn() {
-        if (warningBits.get(2)) {
-            System.out.println("Tire pressure warning: Check tire pressure!");
+    public boolean isFuelLightOn(int gallons) {
+        if (isLowFuel(gallons)) {
+            warningBits.set(2, true);
+            System.out.println("Low fuel warning!");
+        } else {
+            warningBits.set(2, false);
         }
         return warningBits.get(2);
     }
 
-    public boolean isTemperatureLighton(int temp) {
-        if (isOverheated(temp)) {
+    public boolean isTemperatureLighton(int currentTemp) {
+        if (isOverheated(currentTemp)) {
             warningBits.set(3, true);
-            displayOverheated(temp);
+            currentTemp(currentTemp);
+            displayOverheated();
         } else {
             warningBits.set(3, false);
         }
         return warningBits.get(3);
+    }
+
+    public int getMiles(int miles) {
+        return miles / 2;
+    }
+
+    public int getFuel(int gallons) {
+        return gallons;
+    }
+
+    public boolean isLowFuel(int gallons) {
+        int threshold = 2;
+        return (gallons < threshold);
+    }
+
+    public int getTemp(int temp) {
+        return temp;
+    }
+
+    public void currentTemp(int temp) {
+        System.out.println("Current temperature: " + temp + "F");
+    }
+
+    public boolean isOverheated(int temp) {
+        return temp > 220;
+    }
+
+    public void displayOverheated() {
+        System.out.println("Temperature warning: Overheated!");
     }
 }

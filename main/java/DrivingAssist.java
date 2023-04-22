@@ -4,7 +4,6 @@ DRIVING ASSIST CAR FEATURE
 CONTRIBUTOR AJ CARDOZA
 */
 
-import java.util.Comparator;
 import java.util.PriorityQueue;
 import java.util.Random;
 import java.lang.reflect.Array;
@@ -64,12 +63,6 @@ public class DrivingAssist {
             if (car.getDistance() < 30 && car.getDistance() > -30) {
                 System.out.println("Car ahead! Slow down!");
             }
-        }
-    }
-
-    private static class CarSpeedComparator implements Comparator<Car> {
-        public int compare(Car car1, Car car2) {
-            return car1.getSpeed() - car2.getSpeed();
         }
     }
 

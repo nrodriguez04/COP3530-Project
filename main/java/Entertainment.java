@@ -17,7 +17,7 @@ public class Entertainment extends Navigation {
         entertainmentQueue.offer("Bluetooth");
         entertainmentQueue.offer("Phone");
 
-        Scanner scanner = new Scanner(System.in);
+        try (Scanner scanner = new Scanner(System.in)) {
 
         while (!entertainmentQueue.isEmpty()) {
             String option = entertainmentQueue.poll();
@@ -41,6 +41,7 @@ public class Entertainment extends Navigation {
                     System.out.println("Invalid option.");
                     entertainmentQueue.offer(option);
                     break;
+                }
             }
         }
     }
@@ -48,7 +49,7 @@ public class Entertainment extends Navigation {
     private static void activateCarPlay() {
         System.out.println("Activating CarPlay...");
 
-        Scanner scanner = new Scanner(System.in);
+        try (Scanner scanner = new Scanner(System.in)) {
         boolean isRunning = true;
 
         while (isRunning) {
@@ -71,7 +72,7 @@ public class Entertainment extends Navigation {
                     break;
                 case 3:
                     System.out.println("Opening Maps...");
-                    Navigation.activateMaps();
+                    activateMaps();
                     break;
                 case 4:
                     System.out.println("Returning to dashboard...");
@@ -80,6 +81,7 @@ public class Entertainment extends Navigation {
                 default:
                     System.out.println("Invalid option.");
                     break;
+                }
             }
         }
     }
@@ -91,7 +93,6 @@ public class Entertainment extends Navigation {
         String radioType = "AM";
         int radioFrequency = 530;
         int[] presetFrequencies = new int[] { 630, 790, 920, 1110, 1180, 1240, 1290, 1590 };
-        int currentPresetIndex = 0;
 
         while (isRunning) {
             System.out.println("Select Option: ");
@@ -101,7 +102,7 @@ public class Entertainment extends Navigation {
             System.out.println("4. Scan for stations");
             System.out.println("5. Return to dashboard");
 
-            Scanner scanner = new Scanner(System.in);
+            try (Scanner scanner = new Scanner(System.in)) {
             int option = scanner.nextInt();
 
             switch (option) {
@@ -131,7 +132,6 @@ public class Entertainment extends Navigation {
                     int presetIndex = scanner.nextInt() - 1;
                     if (presetIndex >= 0 && presetIndex < presetFrequencies.length) {
                         radioFrequency = presetFrequencies[presetIndex];
-                        currentPresetIndex = presetIndex;
                         System.out.println("Tuned to preset " + (presetIndex + 1) + " (" + radioFrequency + " kHz)");
                     } else {
                         System.out.println("Invalid preset selection.");
@@ -162,6 +162,7 @@ public class Entertainment extends Navigation {
                 default:
                     System.out.println("Invalid option.");
                     break;
+                }
             }
         }
     }
@@ -178,7 +179,7 @@ public class Entertainment extends Navigation {
             System.out.println("4. Listen Now");
             System.out.println("5. Return to dashboard");
 
-            Scanner scanner = new Scanner(System.in);
+            try (Scanner scanner = new Scanner(System.in)) {
             int option = scanner.nextInt();
 
             switch (option) {
@@ -200,6 +201,7 @@ public class Entertainment extends Navigation {
                     break;
                 default:
                     break;
+                }
             }
         }
     }
@@ -207,7 +209,7 @@ public class Entertainment extends Navigation {
     private static void activateMaps() {
         System.out.println("Activating Maps...");
 
-        Scanner scanner = new Scanner(System.in);
+        try (Scanner scanner = new Scanner(System.in)) {
         Navigation navigation = new Navigation();
 
         while (true) {
@@ -243,6 +245,7 @@ public class Entertainment extends Navigation {
                 default:
                     System.out.println("Invalid option. Please try again.");
                     break;
+                }
             }
         }
     }
@@ -257,7 +260,7 @@ public class Entertainment extends Navigation {
             System.out.println("2. Phone");
             System.out.println("3. Return to dashboard");
 
-            Scanner scanner = new Scanner(System.in);
+            try (Scanner scanner = new Scanner(System.in)) {
             int option = scanner.nextInt();
 
             switch (option) {
@@ -275,6 +278,7 @@ public class Entertainment extends Navigation {
                     break;
                 default:
                     break;
+                }
             }
         }
     }
@@ -295,7 +299,7 @@ public class Entertainment extends Navigation {
             System.out.println("4. Keypad");
             System.out.println("5. Return to dashboard");
 
-            Scanner scanner = new Scanner(System.in);
+            try (Scanner scanner = new Scanner(System.in)) {
             int option = scanner.nextInt();
 
             switch (option) {
@@ -370,6 +374,7 @@ public class Entertainment extends Navigation {
                             break;
                         default:
                             break;
+                        }
                     }
 
                 }
