@@ -12,6 +12,7 @@ public class Headlights {
     private static class Weather {
         private String condition;
         private int temperature;
+        private boolean isNight;
 
         public Weather(String condition, int temperature) {
             this.condition = condition;
