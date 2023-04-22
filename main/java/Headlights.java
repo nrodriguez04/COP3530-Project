@@ -124,12 +124,10 @@ public class Headlights {
         snowyNode.insertLeft(headlightsOnNode);
         nightNode.insertLeft(headlightsOnNode);
 
-        poorVisibilityNode.insertLeft(headlightsOnNode);
-        poorVisibilityNode.insertRight(rainyNode);
+        poorVisibilityNode.insertLeft(poorVisibilityNode);
+        poorVisibilityNode.insertRight(headlightsOnNode);
 
-        TreeNode root = poorVisibilityNode;
-
-        boolean shouldTurnOnHeadLights = evaluateTree(root, weather);
+        boolean shouldTurnOnHeadLights = evaluateTree(nightNode, weather);
 
         if (shouldTurnOnHeadLights) {
             System.out.println("Inclement weather detected, headlights sucssessfully activated");
