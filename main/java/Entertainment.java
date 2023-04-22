@@ -208,6 +208,7 @@ public class Entertainment extends Navigation {
         System.out.println("Activating Maps...");
 
         Scanner scanner = new Scanner(System.in);
+        Navigation navigation = new Navigation();
 
         while (true) {
             System.out.println("Select an option:");
@@ -222,8 +223,9 @@ public class Entertainment extends Navigation {
                 case 1:
                     System.out.println("Enter destination:");
                     String destination = scanner.next();
+                    navigation.setCurrentLocation("Your current location");
+                    navigation.setDestination(destination);
                     System.out.println("Calculating route to " + destination + "...");
-                    Navigation navigation = new Navigation();
                     List<String> directions = navigation.getDirections();
                     for (String direction : directions) {
                         System.out.println(direction);
