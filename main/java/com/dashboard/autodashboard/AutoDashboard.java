@@ -23,8 +23,6 @@ public class AutoDashboard extends Main {
         fuelGaugeLabel = new JLabel(("Fuel: " + getFuelLevel()));
         temperatureGaugeLabel = new JLabel("Temp: " + getTemperature());
         warningLightsLabel = new JLabel("Warning Lights: " + getWarningLightsStatus());
-        entertainmentLabel = new JLabel("Entertainment Dashboard");
-        autoAssistLabel = new JLabel("Automatic Assist");
         
         JButton entertainment = new JButton("Entertainment");
         JButton autoAssist = new JButton("Automatic Assist");
