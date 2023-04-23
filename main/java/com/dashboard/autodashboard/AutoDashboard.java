@@ -1,6 +1,6 @@
 package com.dashboard.autodashboard;
-import com.dashboard.entertainmentdasboard.EntertainmentDashboard;
-import com.dashboard.autoassistdashboard.AutoAssistDashboard;
+import EntertainmentDashboard;
+import AutoAssistDashboard;
 
 import javax.swing.*;
 import java.awt.*;
