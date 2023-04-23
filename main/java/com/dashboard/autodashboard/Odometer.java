@@ -1,3 +1,4 @@
+package com.dashboard.autodashboard;
 /* 
 COP 3530 PROJECT
 ODOMETER FEATURE
@@ -6,6 +7,7 @@ CONTRIBUTOR NICOLAS RODRIGUEZ
 
 import java.io.*;
 import java.util.Scanner;
+import java.util.Stack;
 
 public class Odometer implements OdometerInterface {
     private int currentDistance;
@@ -67,5 +69,16 @@ public class Odometer implements OdometerInterface {
             currentDistance = expectedDistance;
             writeDataToFile(currentDistance);
         }
+    }
+
+     public int getTotalDistance() {
+        int totalMileage = 0;
+        Stack<Integer> totalDistance = new Stack<Integer>();
+        totalDistance.push(currentDistance);
+        System.out.println("Total distance traveled: " + totalDistance.pop() + " miles.");
+        while (!totalDistance.isEmpty()) {
+            totalMileage += totalDistance.pop();
+        }
+        return totalMileage;
     }
 }

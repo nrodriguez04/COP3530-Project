@@ -1,3 +1,4 @@
+package com.dashboard.autodashboard;
 /* 
 COP 3530 PROJECT
 WARNING LIGHT FEATURE

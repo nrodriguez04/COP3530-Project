@@ -1,10 +1,15 @@
+package com.dashboard.autodashboard;
+
 /* 
 COP 3530 PROJECT
 AUTOMATIC HEADLIGHTS CAR FEATURE
 CONTRIBUTOR AJ CARDOZA
 */
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
 public class Headlights {
@@ -12,26 +17,28 @@ public class Headlights {
     private static class Weather {
         private String condition;
         private int temperature;
-        //private boolean isNight;
 
         public Weather(String condition, int temperature) {
             this.condition = condition;
             this.temperature = temperature;
-            //this.isNight = isNight();
         }
 
         public String getCondition() {
             return condition;
         }
 
-        public double getTemperature() {
+        public int getTemperature() {
             return temperature;
         }
 
-        public boolean isNight() {
+        public LocalDateTime getNightStartTime() {
             LocalDateTime now = LocalDateTime.now();
             int hour = now.getHour();
-            return hour >= 18 || hour < 6;
+            if (hour >= 18) {
+                return LocalDateTime.of(LocalDate.now(), LocalTime.of(18, 0));
+            } else {
+                return LocalDateTime.of(LocalDate.now().minusDays(1), LocalTime.of(18, 0));
+            }
         }
     }
 
@@ -56,14 +63,14 @@ public class Headlights {
 
         public boolean evaluate(Weather weather) {
             switch (condition) {
-                case "Raining":
-                    return weather.getCondition().equals("Raining");
-                case "Snowing":
-                    return weather.getCondition().equals("Snowing");
+                case "Rain":
+                    return weather.getCondition().equals("Rain");
+                case "Snow":
+                    return weather.getCondition().equals("Snow");
                 case "Night":
-                    return weather.isNight();
+                    return LocalDateTime.now().isAfter(weather.getNightStartTime());
                 case "Poor visibility":
-                    return weather.getCondition().equals("Rainy") || weather.getCondition().equals("Snowy");
+                    return weather.getCondition().equals("Rain") || weather.getCondition().equals("Snow");
                 case "Headlights on":
                     return true;
                 default:
@@ -74,14 +81,12 @@ public class Headlights {
 
     private static Weather generateRandomWeather() {
         Random rand = new Random();
-        String[] conditions = { "Sunny", "Cloudy", "Rainy", "Snowy" };
+        String[] conditions = { "Sunny", "Cloudy", "Rain", "Snow" };
         String condition = conditions[rand.nextInt(conditions.length)];
         int temperatureCelsius = rand.nextInt(121) - 10;
         int temperatureFahrenheit = temperatureCelsius * 9 / 5 + 32;
         temperatureFahrenheit = Math.min(temperatureFahrenheit, 98);
         Weather weather = new Weather(condition, temperatureFahrenheit);
-        //boolean isNight = weather.isNight();
-        //weather.isNight = isNight;
         return weather;
     }
 
@@ -105,7 +110,11 @@ public class Headlights {
 
         Weather weather = generateRandomWeather();
         System.out.print("Current weather: " + weather.getCondition());
-        System.out.println(", Temperature: " + weather.getTemperature());
+        System.out.print(", Temperature: " + weather.getTemperature());
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a");
+        String formattedTime = now.format(formatter);
+        System.out.println(", Time: " + formattedTime);
 
         TreeNode rainyNode = new TreeNode("Raining");
         TreeNode snowyNode = new TreeNode("Snowing");
@@ -117,12 +126,10 @@ public class Headlights {
         snowyNode.insertLeft(headlightsOnNode);
         nightNode.insertLeft(headlightsOnNode);
 
-        poorVisibilityNode.insertLeft(headlightsOnNode);
-        poorVisibilityNode.insertRight(rainyNode);
+        poorVisibilityNode.insertLeft(poorVisibilityNode);
+        poorVisibilityNode.insertRight(headlightsOnNode);
 
-        TreeNode root = poorVisibilityNode;
-
-        boolean shouldTurnOnHeadLights = evaluateTree(root, weather);
+        boolean shouldTurnOnHeadLights = evaluateTree(nightNode, weather);
 
         if (shouldTurnOnHeadLights) {
             System.out.println("Inclement weather detected, headlights sucssessfully activated");
