@@ -1,4 +1,5 @@
 package com.dashboard.autodashboard;
+
 /* 
 COP 3530 PROJECT
 AUTOMOBILE DASHBOARD
@@ -7,6 +8,7 @@ NICOLAS RODRIGUEZ: ODOMETER, WARNING LIGHTS, NAVIGATION
 AJ CARDOZA: ENTERTAINMENT SYSTEM, DRIVING ASSIST, AUTOMATIC HEADLIGHTS
 LORENZO FERNANDEZ: SPEEDOMETER, FUEL GAUGE, TEMPERATURE GAUGE
 */
+
 
 public class Main {
     public static void main(String[] args) {
@@ -35,10 +37,17 @@ public class Main {
         Navigation navigation = new Navigation();
         WarningLights warningLights = new WarningLights();
 
-        // Access Odometer
-        odometer.getCurrentDistance();
+        // Access Odometer Function
+        System.out.println("Current distance: " + odometer.getCurrentDistance());
+        odometer.incrementDistance();
+        System.out.println("Current distance: " + odometer.getCurrentDistance());
+        odometer.correctError(100);
+        System.out.println("Current distance: " + odometer.getCurrentDistance());
+        System.out.println("Total distance: " + odometer.getTotalDistance());
         // Access Navigation
-        navigation.setDestination("FIU");
+        navigation.setCurrentLocation("Start Location");
+        navigation.setDestination("End Location");
+        navigation.getDirections();
         // Access Warning Lights
         warningLights.setTemperatureLightOn(true);
     }
