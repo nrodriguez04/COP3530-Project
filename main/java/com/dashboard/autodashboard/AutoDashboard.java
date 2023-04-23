@@ -1,4 +1,6 @@
 package com.dashboard.autodashboard;
+import com.dashboard.entertainmentdasboard.EntertainmentDashboard;
+import com.dashboard.autoassistdashboard.AutoAssistDashboard;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,6 +23,22 @@ public class AutoDashboard extends Main {
         fuelGaugeLabel = new JLabel(("Fuel: " + getFuelLevel()));
         temperatureGaugeLabel = new JLabel("Temp: " + getTemperature());
         warningLightsLabel = new JLabel("Warning Lights: " + getWarningLightsStatus());
+        entertainmentLabel = new JLabel("Entertainment Dashboard");
+        autoAssistLabel = new JLabel("Automatic Assist");
+        
+        JButton entertainment = new JButton("Entertainment");
+        JButton autoAssist = new JButton("Automatic Assist");
+        
+        entertainment.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                EntertainmentDashboard.setVisible(true);
+            }
+        });
+        autoAssist.addActionListenser(new ActionListener(){
+            public void actionPerformed(ActionEvent e) {
+                AutoAssistDashboard.setVisible(true);
+            }
+        });
 
                 // Create the panel
                 panel = new JPanel();
@@ -30,6 +48,8 @@ public class AutoDashboard extends Main {
                 panel.add(fuelGaugeLabel);
                 panel.add(temperatureGaugeLabel);
                 panel.add(warningLightsLabel);
+                panel.add(entertainment);
+                panel.add(autoAssist);
         
                 // Add the panel to the frame
                 frame.getContentPane().add(panel);
