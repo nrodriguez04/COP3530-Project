@@ -14,7 +14,7 @@ import java.util.Random;
 
 public class Headlights {
 
-    private static class Weather {
+    public static class Weather {
         private String condition;
         private int temperature;
 
@@ -42,7 +42,7 @@ public class Headlights {
         }
     }
 
-    private static class TreeNode {
+    public static class TreeNode {
         private String condition;
         private TreeNode left;
         private TreeNode right;
