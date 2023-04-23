@@ -34,7 +34,7 @@ public class AutoDashboard extends Main {
                 EntertainmentDashboard.setVisible(true);
             }
         });
-        autoAssist.addActionListenser(new ActionListener(){
+        autoAssist.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
                 AutoAssistDashboard.setVisible(true);
             }
