@@ -9,9 +9,9 @@ import java.awt.event.ActionListener;
 
 
 public class AutoDashboard extends Main {
-    private JFrame frame;
-    private JLabel odometerLabel, speedometerLabel, fuelGaugeLabel, temperatureGaugeLabel, warningLightsLabel;
-    private JPanel panel;
+    private static JFrame frame;
+    private static JLabel odometerLabel, speedometerLabel, fuelGaugeLabel, temperatureGaugeLabel, warningLightsLabel;
+    private static JPanel panel;
 
     public static void main(String[] args) {
         // Create the window
@@ -68,7 +68,7 @@ public class AutoDashboard extends Main {
         
             private String getSpeed() {
                 Speedometer speedometer = new Speedometer();
-                return Integer.toString(speedometer.getCurrentSpeed());
+                return Integer.toString(speedometer.getAverageSpeed());
             }
         
             private String getFuelLevel() {
